@@ -23,14 +23,13 @@ func main() {
 		panic(err)
 	}
 
-	var out chunk.Out
-
-	out.Chunks = out.CreateChunk(in.Massive)
-
-	res, err := json.Marshal(out)
-	if err != nil {
-		panic(err)
+	out := chunk.Out{
+		Data: make(map[string][]int),
 	}
 
-	fmt.Println(string(res))
+	out.CreateChunk(in.Massive)
+
+	jsonn := out.Marshal()
+
+	fmt.Println(string(jsonn))
 }
